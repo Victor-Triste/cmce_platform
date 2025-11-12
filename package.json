@@ -1,0 +1,35 @@
+{
+	"name": "cmcemx-system",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],"packageManager": "pnpm@10.18.0",
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"lint": "turbo run lint",
+		"test": "turbo run test",
+		"start:frontend": "cd apps/frontend && pnpm dev",
+		"lint:frontend": "cd apps/frontend && pnpm lint",
+		"start:backend": "cd apps/backend && uvicorn main:app --reload",
+		"lint:backend": "ruff check apps/backend",
+		"check-types": "cd apps/frontend && pnpm tsc --noEmit",
+		"dev:system": "turbo run dev --filter=cmce-system",
+    "dev:website": "turbo run dev --filter=cmce-website",
+    "dev:backend": "uvicorn backend.main:app --reload",
+	"dev:all": "pnpm dev:backend & pnpm dev:system & pnpm dev:website"
+	},
+	"devDependencies": {
+		"turbo": "^2.6.0"
+	},
+	"lint": {
+		"outputs": []
+	},
+	"test": {
+		"outputs": []
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.12.0"
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@cmce/ui",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --out-dir dist",
+    "lint": "eslint . --ext .ts,.vue",
+    "check-types": "tsc --noEmit"
+  }
+}

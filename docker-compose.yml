@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file: .env
+    depends_on:
+      - db
+    networks:
+      - hospital_net
+
+  hospital-system:
+    build: ./apps/hospital-system
+    ports:
+      - "5173:80"
+    env_file: .env
+    depends_on:
+      - backend
+    networks:
+      - hospital_net
+
+  hospital-website:
+    build: ./apps/hospital-website
+    ports:
+      - "5174:80"
+    env_file: .env
+    depends_on:
+      - backend
+    networks:
+      - hospital_net
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hospital_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - hospital_net
+
+networks:
+  hospital_net:
+volumes:
+  mysql_data:

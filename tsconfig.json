@@ -1,0 +1,28 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/config" },
+    { "path": "packages/types" },
+    { "path": "packages/ui" },
+    { "path": "packages/utils" },
+    { "path": "apps/cmce-website" },
+    { "path": "apps/cmce-system" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@cmce/config": ["packages/config/src"],
+      "@cmce/types": ["packages/types/src"],
+      "@cmce/ui": ["packages/ui/src"],
+      "@cmce/utils": ["packages/utils/src"]
+    },
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ESNext",
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}
+
