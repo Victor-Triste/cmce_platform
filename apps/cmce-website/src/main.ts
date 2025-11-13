@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-
+import '@cmce/ui/base.css' 
 import { formatDate } from '@cmce/utils'
-console.log(formatDate(new Date()))
+console.log(formatDate(new Date().toDateString()))
 
 import App from './App.vue'
 import router from './router'

@@ -16,13 +16,19 @@
       "@cmce/ui": ["packages/ui/src"],
       "@cmce/utils": ["packages/utils/src"]
     },
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "ESNext",
-    "target": "ESNext",
+    "target": "ES2020",  // 👈 Cambio de ESNext a ES2020 (más compatible)
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],  // 👈 AGREGADO
     "strict": true,
+    "types": ["vue"],
     "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,  // 👈 AGREGADO (para importar JSON)
+    "isolatedModules": true,  // 👈 AGREGADO (requerido por Vite)
+    "noEmit": true  // 👈 AGREGADO (no genera archivos compilados)
   }
 }
 

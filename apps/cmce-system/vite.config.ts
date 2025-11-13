@@ -1,36 +1,38 @@
-import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import vueDevTools from "vite-plugin-vue-devtools";
-import path from "path";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import { fileURLToPath, URL } from 'node:url'
+import tailwindcss from '@tailwindcss/vite'
 
-// Configuración optimizada para entorno corporativo
 export default defineConfig({
   plugins: [
     vue(),
+    tailwindcss(),
     vueDevTools()
   ],
 
   resolve: {
     alias: {
-  "@": fileURLToPath(new URL("./src", import.meta.url)),
-  "@cmce/utils": path.resolve(__dirname, "../../packages/utils/src"),
-  "@cmce/ui": path.resolve(__dirname, "../../packages/ui/src"),
-  "@cmce/types": path.resolve(__dirname, "../../packages/types/src"),
-  "@cmce/config": path.resolve(__dirname, "../../packages/config/src")
-}
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@cmce/utils': fileURLToPath(new URL('../../packages/utils/src', import.meta.url)),
+      '@cmce/ui': fileURLToPath(new URL('../../packages/ui/src', import.meta.url)),
+      '@cmce/types': fileURLToPath(new URL('../../packages/types/src', import.meta.url)),
+      '@cmce/config': fileURLToPath(new URL('../../packages/config/src', import.meta.url))
+    }
   },
 
   server: {
-    port: 5174, // distinto al website
+    port: 5174,
     open: true,
     proxy: {
-      // Ejemplo: redirigir llamadas al backend FastAPI
-      "/api": {
-        target: "http://localhost:8000",
+      '/api': {
+        target: 'http://localhost:8000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "")
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
+    },
+    fs: {
+      allow: ['..', '../packages']
     }
   },
 
@@ -39,34 +41,30 @@ export default defineConfig({
       less: {
         javascriptEnabled: true,
         modifyVars: {
-          // Personaliza los colores principales de Ant Design
-          "primary-color": "#1d4ed8", // azul Tailwind (azul marino)
-          "border-radius-base": "8px"
+          'primary-color': '#1d4ed8',
+          'border-radius-base': '8px'
         }
       }
     }
   },
 
   optimizeDeps: {
-    exclude: [
-      "@ui",
-      "@utils",
-      "@types",
-      "@config"
-    ]
+    exclude: ['@cmce/utils', '@cmce/ui', '@cmce/config', '@cmce/types']
   },
 
   build: {
     sourcemap: false,
-    outDir: "dist",
+    outDir: 'dist',
+    target: 'esnext',
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
-          vue: ["vue", "vue-router", "pinia"],
-          antd: ["ant-design-vue"]
+          vue: ['vue', 'vue-router', 'pinia'],
+          antd: ['ant-design-vue']
         }
       }
     }
   }
-});
+})
 

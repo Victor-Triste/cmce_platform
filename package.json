@@ -4,7 +4,8 @@
 	"workspaces": [
 		"apps/*",
 		"packages/*"
-	],"packageManager": "pnpm@10.18.0",
+	],
+	"packageManager": "pnpm@10.18.0",
 	"scripts": {
 		"dev": "turbo run dev",
 		"build": "turbo run build",
@@ -16,12 +17,21 @@
 		"lint:backend": "ruff check apps/backend",
 		"check-types": "cd apps/frontend && pnpm tsc --noEmit",
 		"dev:system": "turbo run dev --filter=cmce-system",
-    "dev:website": "turbo run dev --filter=cmce-website",
-    "dev:backend": "uvicorn backend.main:app --reload",
-	"dev:all": "pnpm dev:backend & pnpm dev:system & pnpm dev:website"
+		"dev:website": "turbo run dev --filter=cmce-website",
+		"dev:backend": "uvicorn backend.main:app --reload",
+		"dev:all": "pnpm dev:backend & pnpm dev:system & pnpm dev:website"
 	},
 	"devDependencies": {
+		"@tailwindcss/vite": "^4.1.17",
+		"tailwindcss": "^4.1.17",
 		"turbo": "^2.6.0"
+	},
+	"pnpm": {
+		"overrides": {
+			"vite": "^7.2.2",
+			"@types/node": "^22.19.0",
+			"rollup": "^4.53.2"
+		}
 	},
 	"lint": {
 		"outputs": []
@@ -31,5 +41,10 @@
 	},
 	"engines": {
 		"node": "^20.19.0 || >=22.12.0"
+	},
+	"dependencies": {
+		"ant-design-vue": "^4.2.6",
+		"axios": "^1.13.2",
+		"vue": "^3.5.24"
 	}
 }

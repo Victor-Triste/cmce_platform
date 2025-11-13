@@ -6,7 +6,15 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@cmce/utils": ["../../packages/utils/src"],
+      "@cmce/utils/*": ["../../packages/utils/src/*"],
+      "@cmce/ui": ["../../packages/ui/src"],
+      "@cmce/ui/*": ["../../packages/ui/src/*"],
+      "@cmce/types": ["../../packages/types/src"],
+      "@cmce/types/*": ["../../packages/types/src/*"],
+      "@cmce/config": ["../../packages/config/src"],
+      "@cmce/config/*": ["../../packages/config/src/*"]
     }
   }
 }

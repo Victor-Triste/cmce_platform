@@ -2,11 +2,11 @@ import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 
-// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
-// import { configureVueProject } from '@vue/eslint-config-typescript'
-// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
-// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
+// Obtén el directorio actual
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfigWithVueTs(
   {
@@ -19,4 +19,25 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
+  
+  {
+    name: 'app/typescript-parser-options',
+    files: ['**/*.{ts,mts,tsx,vue}'],
+    languageOptions: {
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+         project: ['./tsconfig.app.json'], 
+        extraFileExtensions: ['.vue'] 
+      }
+    }
+  },
+  {
+    name: 'app/config-files',
+    files: ['*.config.{ts,js,mts,mjs}', 'eslint.config.ts'],
+    languageOptions: {
+      parserOptions: {
+        project: null, 
+      }
+    }
+  }
 )

@@ -1,36 +1,38 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vueDevTools from 'vite-plugin-vue-devtools';
-import path from 'path';
-
-// Ajusta los paths relativos según la ubicación de cada frontend
-const root = __dirname;
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import { fileURLToPath, URL } from 'node:url'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools() // solo en desarrollo
+    tailwindcss(),
+    vueDevTools()
   ],
 
   resolve: {
     alias: {
-      '@': path.resolve(root, './src'),
-      '@cmce/utils': path.resolve(root, '../../packages/utils/src'),
-      '@cmce/ui': path.resolve(root, '../../packages/ui/src'),
-      '@cmce/types': path.resolve(root, '../../packages/types/src'),
-      '@cmce/config': path.resolve(root, '../../packages/config/src')
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@cmce/utils': fileURLToPath(new URL('../../packages/utils/src', import.meta.url)),
+      '@cmce/ui': fileURLToPath(new URL('../../packages/ui/src', import.meta.url)),
+      '@cmce/types': fileURLToPath(new URL('../../packages/types/src', import.meta.url)),
+      '@cmce/config': fileURLToPath(new URL('../../packages/config/src', import.meta.url))
     }
   },
 
   server: {
-    port: root.includes('website') ? 5173 : 5174,
+    port: 5173,
     open: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8000', // backend FastAPI
+        target: 'http://localhost:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
+    },
+    fs: {
+      allow: ['..', '../packages']
     }
   },
 
@@ -39,7 +41,7 @@ export default defineConfig({
       less: {
         javascriptEnabled: true,
         modifyVars: {
-          'primary-color': '#1d4ed8', // azul marino
+          'primary-color': '#1d4ed8',
           'border-radius-base': '8px'
         }
       }
@@ -53,6 +55,8 @@ export default defineConfig({
   build: {
     sourcemap: false,
     outDir: 'dist',
+    target: 'esnext',
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -62,6 +66,6 @@ export default defineConfig({
       }
     }
   }
-});
+})
 
 
