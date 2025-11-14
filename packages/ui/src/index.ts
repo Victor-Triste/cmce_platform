@@ -1,3 +1,5 @@
 export { default as BaseButton } from './components/BaseButton.vue'
 export {default as Card} from './components/Card.vue'
+export { default as MyFooter } from './components/MyFooter.vue'
+export { default as TopInfoBar } from './components/header/TopInfoBar.vue'
 // export { default as Modal } from './components/Modal.vue'

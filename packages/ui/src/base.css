@@ -1,3 +1,22 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 @source "../src/**/*.{vue,js,ts,jsx,tsx}";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+:root {
+  --font-primary: 'Inter', sans-serif;       /* Para títulos */
+  --font-secondary: 'Source Sans Pro', sans-serif; /* Para párrafos */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600; /* Semibold */
+}
+
+/* Párrafos */
+p, span, li, a {
+  font-family: var(--font-secondary);
+  font-weight: 400; /* Regular */
+}
