@@ -19,26 +19,30 @@ defineProps({
 
 <template>
   <div
-    class="relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-500 hover:scale-[1.03] cursor-default"
+    class="relative w-full h-[350px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl group transition-transform duration-700 hover:scale-[1.02] cursor-default"
     role="region"
-    aria-label="Información institucional"
+    aria-label="Sección informativa institucional"
   >
-    <!-- Imagen de fondo -->
+    <!-- Imagen de fondo con desenfoque -->
     <div
-      class="absolute inset-0 bg-cover bg-center"
+      class="absolute inset-0 bg-cover bg-center blur-sm scale-105 transition-all duration-700 group-hover:blur-md"
       :style="{ backgroundImage: `url(${image})` }"
       aria-hidden="true"
     ></div>
 
-    <!-- Overlay oscuro para mejorar contraste -->
-    <div class="absolute inset-0 bg-black/10"></div>
+    <!-- Capa de oscurecimiento -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0b1a35]/80 to-[#0b1a35]/90 opacity-90"></div>
 
     <!-- Contenido -->
-    <div class="relative z-10 flex flex-col justify-center items-center text-center text-white p-6 md:p-8">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-3">
+    <div class="relative z-10 flex flex-col justify-center items-center text-center text-white px-6 py-8 md:px-12 md:py-10">
+      <h2
+        class="text-2xl md:text-3xl font-bold mb-4 tracking-wide drop-shadow-md"
+      >
         {{ title }}
       </h2>
-      <p class="text-base md:text-lg leading-relaxed max-w-2xl">
+      <p
+        class="text-base md:text-lg leading-relaxed max-w-2xl text-gray-200 drop-shadow-sm"
+      >
         {{ description }}
       </p>
     </div>
@@ -46,12 +50,9 @@ defineProps({
 </template>
 
 <style scoped>
-/* Efecto suave al cargar la imagen (opcional) */
-div[aria-hidden="true"] {
-  filter: brightness(0.8);
-  transition: filter 0.4s ease;
-}
-div[aria-hidden="true"]:hover {
-  filter: brightness(0.7);
+/* Mejora visual del texto y animación al pasar el ratón */
+.group:hover h2 {
+  color: #a3c9ff;
+  transition: color 0.3s ease;
 }
 </style>
