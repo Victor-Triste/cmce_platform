@@ -149,7 +149,11 @@ importers:
         specifier: ^3.1.1
         version: 3.1.3(typescript@5.9.3)
 
-  packages/config: {}
+  packages/config:
+    dependencies:
+      axios:
+        specifier: ^1.13.2
+        version: 1.13.2
 
   packages/types: {}
 
