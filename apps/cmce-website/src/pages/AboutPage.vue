@@ -9,7 +9,7 @@
        <HeaderSection
       title="Sobre nosotros"
       background="/images/sobrenosotros.jpg"
-      overlayOpacity="0.7"
+      ;overlayOpacity="0.7"
     />
 
       <!-- Contenido informativo -->
