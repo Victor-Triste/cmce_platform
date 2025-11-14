@@ -5,7 +5,7 @@
   <HeaderSection
     title="Contacto"
     background="/images/sobrenosotros.jpg"
-    ;overlayOpacity="0.7"
+    :overlayOpacity="0.7"
   />
 
   <!-- ===========================
