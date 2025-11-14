@@ -9,7 +9,11 @@
        <HeaderSection
       title="Sobre nosotros"
       background="/images/sobrenosotros.jpg"
+<<<<<<< Updated upstream
       ;overlayOpacity="0.7"
+=======
+      :overlayOpacity="0.7"
+>>>>>>> Stashed changes
     />
 
       <!-- Contenido informativo -->

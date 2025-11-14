@@ -4,7 +4,7 @@ import MainNavbar from './MainNavbar.vue'
 </script>
 
 <template>
-  <header>
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white">
     <TopInfoBar />
     <MainNavbar />
   </header>

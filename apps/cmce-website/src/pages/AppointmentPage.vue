@@ -87,8 +87,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import MyHeader from '@/components/MyHeader.vue'
-import MyFooter from '@cmce/ui/components/MyFooter.vue'
+// import MyHeader from '@/components/MyHeader.vue'
+// import MyFooter from '@cmce/ui/components/MyFooter.vue'
 import LocationMap from '@/components/LocationMap.vue'
 
 const schedule = [

@@ -3,7 +3,7 @@
     <iframe
       :title="title"
       :src="src"
-      class="h-[320px] w-full border-0 md:h-[420px]"
+      class="h-80 w-full border-0 md:h-[420px]"
       loading="lazy"
       allowfullscreen
       referrerpolicy="no-referrer-when-downgrade"

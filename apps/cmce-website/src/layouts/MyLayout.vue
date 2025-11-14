@@ -4,7 +4,10 @@
       <MyHeader />
       <!-- <ThemeSwitcher /> -->
       
-      <LayoutContent class="flex-1 m-5 ">
+      <LayoutContent class="flex-1 transition-all duration-300"
+        :style="{
+          paddingTop: headerHeight + 'px'
+        }">
         <router-view />
       </LayoutContent>
 
@@ -22,6 +25,10 @@ import MyHeader from '@/components/MyHeader.vue';
 import { Layout, LayoutContent } from 'ant-design-vue';
 import { ConfigProvider, theme } from 'ant-design-vue';
 import { useAppConfig } from '@/composables/useAppConfig';
+import { useHeaderHeight } from '@/composables/useHeaderHeight'
+
+const { headerHeight } = useHeaderHeight()
+
 // import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 
 const { theme: appTheme } = useAppConfig();
